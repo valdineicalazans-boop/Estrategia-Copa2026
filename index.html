@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Copa do Mundo 2026 — BRPE01 Estratégia Operacional</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#F2F4F8;color:#1C2333;font-size:12px}
+.topbar{background:linear-gradient(135deg,#0A1628 0%,#162347 55%,#0A1628 100%);
+  padding:13px 24px;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:3px solid #FFE600;position:sticky;top:0;z-index:100;
+  box-shadow:0 3px 20px rgba(0,0,0,.45)}
+.t-logo{background:#FFE600;border-radius:8px;padding:5px 13px;
+  font-size:11px;font-weight:800;color:#0A1628}
+.t-tag{background:rgba(255,230,0,.12);border:1px solid rgba(255,230,0,.38);
+  color:#FFE600;font-size:10px;font-weight:700;border-radius:20px;
+  padding:4px 12px;margin-left:10px;letter-spacing:.5px}
+.t-center{text-align:center;flex:1}
+.t-title{font-size:18px;font-weight:800;color:#FFE600;letter-spacing:.5px}
+.t-sub{font-size:10px;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1.2px;margin-top:2px}
+.t-right{text-align:right;font-size:10px;color:rgba(255,255,255,.7);line-height:1.9}
+.t-right b{color:#FFE600;font-weight:700}
+.tabs-nav{background:#fff;border-bottom:2px solid #E4E8F0;padding:0 24px;display:flex;
+  box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.tab-btn{padding:12px 24px;font-size:12px;font-weight:600;border:none;
+  background:transparent;cursor:pointer;color:#8A96A8;
+  border-bottom:3px solid transparent;transition:all .18s;white-space:nowrap}
+.tab-btn:hover{color:#162347;background:#F8F9FC}
+.tab-btn.active{color:#162347;border-bottom-color:#FFE600;font-weight:700;background:#FAFBFE}
+.tab-content{}.tab-content.active{}
+.legend{background:#fff;border-bottom:1px solid #E4E8F0;padding:7px 24px;
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.leg{display:flex;align-items:center;gap:5px;font-size:10px;color:#5A6A7A;
+  padding:3px 9px;border-radius:5px}
+.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.page{padding:14px 22px;max-width:1440px;margin:0 auto}
+.jbanner{border-radius:14px;padding:16px 22px;margin-bottom:14px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 4px 18px rgba(0,0,0,.14)}
+.jb-l{display:flex;align-items:center;gap:16px}
+.jb-ball{font-size:36px;line-height:1}
+.jb-label{font-size:9px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.9px}
+.jb-date{font-size:17px;font-weight:800;color:#FFE600;margin:2px 0}
+.jb-info{font-size:11px;color:rgba(255,255,255,.82)}
+.jb-tag{display:inline-block;margin-top:5px;background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:3px 11px;
+  font-size:10px;font-weight:700;color:#fff}
+.jb-jtag{display:inline-block;margin-left:6px;background:rgba(255,230,0,.2);
+  border:1px solid rgba(255,230,0,.5);border-radius:6px;padding:3px 11px;
+  font-size:10px;font-weight:700;color:#FFE600}
+.jb-kpis{display:flex;gap:10px}
+.kpill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:7px 16px;text-align:center;min-width:86px}
+.kpv{font-size:18px;font-weight:800;color:#FFE600;line-height:1}
+.kpl{font-size:9px;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.4px;margin-top:3px}
+.tpanel{background:#fff;border-radius:12px;overflow:hidden;
+  box-shadow:0 2px 14px rgba(0,0,0,.07);margin-bottom:14px}
+.tpanel-hdr{padding:9px 16px;font-size:12px;font-weight:700;color:#fff;
+  display:flex;align-items:center;justify-content:space-between}
+.tref{font-size:10px;font-weight:400;opacity:.7}
+.tscroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:900px}
+thead th{padding:9px 11px;font-weight:700;font-size:10px;text-transform:uppercase;
+  letter-spacing:.35px;white-space:nowrap;color:#fff;
+  border-right:1px solid rgba(255,255,255,.08)}
+.th-day{background:#0A1628;width:22px;padding:0!important}
+.th-hora{background:#162347;text-align:left;width:55px}
+.th-cpt{background:#162347;text-align:center;width:64px}
+.th-ante{background:#00695C;text-align:center;width:135px}
+.th-med{background:#2C3A4A;text-align:right;width:118px}
+.th-stg{background:#2C3A4A;text-align:right;width:118px}
+.th-vant{background:#1B5E20;text-align:right;width:118px}
+.th-pant{background:#1B5E20;text-align:right;width:118px}
+.th-est{background:#1C2333;text-align:left;color:#FFE600}
+.td-day{background:#0A1628!important;color:#FFE600!important;font-weight:800!important;
+  font-size:10px!important;writing-mode:vertical-rl;text-orientation:mixed;
+  transform:rotate(180deg);text-align:center;padding:6px 3px!important;width:22px;
+  border-right:3px solid #FFE600!important}
+.td-h{font-weight:600;font-size:11px;color:#5A6A7A;padding:5px 10px;
+  background:#F7F9FF;border-right:1px solid #E8EDF5;width:55px}
+.td-h.has-cpt{color:#162347;font-weight:700;background:#EEF1FB}
+.td-h.jogo-interval{color:#8A96A8!important;background:#ECEFF1!important;font-style:italic}
+.td-h.has-risk{color:#A07800;background:#FFF8DC}
+.td-h.has-risk.has-cpt{color:#A07800;background:#FFF0C0;font-weight:700}
+tr.tr-jogo td{background:#F5F7F8!important}
+tr.tr-jogo td.td-h{background:#ECEFF1!important;color:#8A96A8!important;font-style:italic}
+tr.tr-risk td{background:#FDFAF0}
+.td-cpt{text-align:center;padding:5px 8px}
+.badge-cpt{display:inline-block;background:#162347;color:#FFE600;
+  font-size:10px;font-weight:700;padding:3px 10px;border-radius:6px;
+  letter-spacing:.3px;box-shadow:0 1px 4px rgba(22,35,71,.25)}
+.badge-cpt-ante{display:inline-block;background:#00695C;color:#fff;
+  font-size:10px;font-weight:700;padding:3px 10px;border-radius:6px;
+  white-space:nowrap;box-shadow:0 1px 4px rgba(0,105,92,.25);margin:1px}
+.td-ante{text-align:center;padding:5px 8px}
+.td-n{text-align:right;padding:5px 12px;font-weight:500;color:#3D4A5C}
+.td-n.dim{color:#CFD8DC;text-align:center;font-weight:400}
+.td-n.antecipado{background:#E8F5E9!important;color:#2E7D32!important;
+  font-weight:700;border-left:2px solid #A5D6A7}
+.td-n.bold{font-weight:700;color:#1C2333}
+.td-est{padding:5px 12px;font-size:10px;color:#5A6A7A;min-width:160px}
+.etag{display:inline-block;padding:2px 8px;border-radius:7px;
+  font-size:9px;font-weight:700;margin:1px 2px;white-space:nowrap}
+.e-ante{background:#E0F2F1;color:#00695C}
+.e-game{background:#ECEFF1;color:#546E7A}
+tr td{border-bottom:1px solid #EFF1F7;vertical-align:middle}
+tr:hover td{filter:brightness(.975)}
+tr.sep td{background:linear-gradient(90deg,#FFE600,#FFD000);height:3px;padding:0}
+tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
+  padding:7px 12px;border-top:2px solid #C5CAE9}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:12px;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;border:1px solid #E4E8F0;
+  border-left:4px solid #ccc;padding:16px 18px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);transition:box-shadow .2s,transform .15s}
+.card:hover{box-shadow:0 6px 22px rgba(0,0,0,.1);transform:translateY(-2px)}
+.card-title{font-size:12px;font-weight:700;color:#1C2333;margin-bottom:7px}
+.card-body{font-size:11px;color:#607080;line-height:1.65}
+.card-body b{color:#1C2333}
+.card-pill{display:inline-block;margin-top:10px;padding:3px 10px;
+  border-radius:7px;font-size:10px;font-weight:700}
+.section-h{font-size:11px;font-weight:700;color:#8A96A8;text-transform:uppercase;
+  letter-spacing:.8px;margin:16px 0 10px;display:flex;align-items:center;gap:8px}
+.section-h::after{content:'';flex:1;height:1px;background:#E4E8F0}
+.atencao-box{background:#fff;border-radius:12px;border:1px solid #E4E8F0;
+  border-left:4px solid #FFE600;padding:16px 20px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);margin-bottom:20px}
+.atencao-title{font-size:12px;font-weight:700;color:#0A1628;margin-bottom:12px}
+.atencao-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.atencao-item{display:flex;gap:10px;font-size:11px;color:#607080;line-height:1.6}
+.atencao-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.atencao-item b{color:#1C2333}
+
+/* J2 yellow theme overrides */
+.j2-tab .jbanner .jb-label{color:rgba(10,22,40,.65)!important}
+.j2-tab .jbanner .jb-date{color:#0A1628!important;font-weight:900!important}
+.j2-tab .jbanner .jb-info{color:rgba(10,22,40,.85)!important}
+.j2-tab .jbanner .jb-tag{background:rgba(10,22,40,.15)!important;
+  border-color:rgba(10,22,40,.3)!important;color:#0A1628!important}
+.j2-tab .jbanner .jb-jtag{background:rgba(10,22,40,.15)!important;
+  border-color:rgba(10,22,40,.35)!important;color:#0A1628!important}
+.j2-tab .jbanner .kpill{background:rgba(10,22,40,.15)!important;
+  border-color:rgba(10,22,40,.15)!important}
+.j2-tab .jbanner .kpv{color:#0A1628!important}
+.j2-tab .jbanner .kpl{color:rgba(10,22,40,.55)!important}
+</style>
+<script>(function(){function _ok(r,onOk){return r.json().then(function(b){if(!r.ok)throw b;onOk(b);return b;});}window.GRID=window.GRID||{};window.GRID.docId="01KSG6SYY7DQ235DHSX49MEB0R";window.GRID._stateUpdatedAt='';window.GRID._stateUpdatedAtByName=window.GRID._stateUpdatedAtByName||{};window.GRID.states={get:function(name){var n=String(name||'').trim();if(!n)return Promise.reject({error:'validation_error',detail:'state name is required'});return fetch('/api/v1/documents/'+"01KSG6SYY7DQ235DHSX49MEB0R"+'/states/'+encodeURIComponent(n)).then(function(r){return _ok(r,function(b){window.GRID._stateUpdatedAtByName[n]=b.updated_at||'';});});},set:function(name,data,ifUpdatedAt){var n=String(name||'').trim();if(!n)return Promise.reject({error:'validation_error',detail:'state name is required'});return fetch('/api/v1/documents/'+"01KSG6SYY7DQ235DHSX49MEB0R"+'/states/'+encodeURIComponent(n),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({state:data,if_updated_at:(typeof ifUpdatedAt==='string'?ifUpdatedAt:(window.GRID._stateUpdatedAtByName[n]||''))})}).then(function(r){return _ok(r,function(b){window.GRID._stateUpdatedAtByName[n]=b.updated_at||'';});});},patch:function(name,patchData,ifUpdatedAt){var n=String(name||'').trim();if(!n)return Promise.reject({error:'validation_error',detail:'state name is required'});return fetch('/api/v1/documents/'+"01KSG6SYY7DQ235DHSX49MEB0R"+'/states/'+encodeURIComponent(n),{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({patch:patchData,if_updated_at:(typeof ifUpdatedAt==='string'?ifUpdatedAt:(window.GRID._stateUpdatedAtByName[n]||''))})}).then(function(r){return _ok(r,function(b){window.GRID._stateUpdatedAtByName[n]=b.updated_at||'';});});}};window.GRID.state={get:function(){return fetch('/api/v1/documents/'+"01KSG6SYY7DQ235DHSX49MEB0R"+'/state').then(function(r){return _ok(r,function(b){window.GRID._stateUpdatedAt=b.updated_at||'';});});},set:function(data,ifUpdatedAt){return fetch('/api/v1/documents/'+"01KSG6SYY7DQ235DHSX49MEB0R"+'/state',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({state:data,if_updated_at:(typeof ifUpdatedAt==='string'?ifUpdatedAt:(window.GRID._stateUpdatedAt||''))})}).then(function(r){return _ok(r,function(b){window.GRID._stateUpdatedAt=b.updated_at||'';});});},patch:function(patchData,ifUpdatedAt){return fetch('/api/v1/documents/'+"01KSG6SYY7DQ235DHSX49MEB0R"+'/state',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({patch:patchData,if_updated_at:(typeof ifUpdatedAt==='string'?ifUpdatedAt:(window.GRID._stateUpdatedAt||''))})}).then(function(r){return _ok(r,function(b){window.GRID._stateUpdatedAt=b.updated_at||'';});});}};}());</script></head>
+<body>
+<div class="topbar">
+  <div style="display:flex;align-items:center">
+    <div class="t-logo">mercadolibre</div>
+    <div class="t-tag">Flow FBM Executions | BRPE01</div>
+  </div>
+  <div class="t-center">
+    <div class="t-title">⚽ Estratégia Operacional</div>
+    <div class="t-sub">BRPE01 | Jogos da Primeira Fase</div>
+  </div>
+  <div class="t-right">
+    <b>J1</b> Sáb 13/06 · 19:00–21:30<br>
+    <b>J2</b> Sex 19/06 · 21:30–00:00<br>
+    <b>J3</b> Qua 24/06 · 19:00–21:30
+  </div>
+</div>
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="showTab('j1',this)">⚽ J1 — Sáb 13/06/2026</button>
+  <button class="tab-btn"        onclick="showTab('j2',this)">⚽ J2 — Sex 19/06/2026</button>
+  <button class="tab-btn"        onclick="showTab('j3',this)">⚽ J3 — Qua 24/06/2026</button>
+  <button class="tab-btn" onclick="showTab('guia',this)">📖 Guia de Replicação</button>
+</div>
+<div class="legend">
+  <div class="leg" style="background:#EEF1FB"><div class="ld" style="background:#162347"></div><b>CPT</b> = badge azul — cut-off de postagem</div>
+  <div class="leg" style="background:#E0F2F1"><div class="ld" style="background:#00695C"></div>Badge verde = CPT antecipado</div>
+  <div class="leg" style="background:#E8F5E9"><div class="ld" style="background:#2E7D32"></div>Volume / Posições antecipados</div>
+  <div class="leg" style="background:#FFF8DC"><div class="ld" style="background:#BF8000"></div>⚠ Risco — 1h antes da janela</div>
+  <div class="leg" style="background:#ECEFF1"><div class="ld" style="background:#90A4AE"></div>⚽ Intervalo do jogo (cinza)</div>
+  <div style="margin-left:auto;font-size:10px;color:#90A4AE">Dados históricos: últimas 4 semanas</div>
+</div>
+<div id="tab-j1" class="tab-content active" style="display:block">
+<div class="page">
+  <div class="jbanner" style="background:linear-gradient(135deg,#1A237E 0%,#283593 100%)">
+  <div class="jb-l">
+    <div class="jb-ball">⚽</div>
+    <div>
+      <div class="jb-label">Jogo 1 · W24 · Kickoff 19:00</div>
+      <div class="jb-date">Sábado, 13 de Junho de 2026</div>
+      <div class="jb-info">Janela de parada: <b>18:30 → 21:15</b>
+        <span class="jb-jtag">🕐 Jogo: 19:00 → 21:30</span>
+      </div>
+    </div>
+  </div>
+  <div class="jb-kpis">
+    <div class="kpill"><div class="kpv">12</div><div class="kpl">CPTs no dia</div></div>
+    <div class="kpill"><div class="kpv">2</div><div class="kpl">antecipados</div></div>
+    <div class="kpill"><div class="kpv">2.5h</div><div class="kpl">impacto</div></div>
+  </div>
+</div>
+  <div class="tpanel">
+    <div class="tpanel-hdr" style="background:#162347">
+      BRPE01 — Simulação Horária
+      <span class="tref">Ref.: dados históricos últimas 4 semanas</span>
+    </div>
+    <div class="tscroll"><table>
+<thead><tr>
+  <th class="th-day"></th>
+  <th class="th-hora">HORA</th>
+  <th class="th-cpt">CPT?</th>
+  <th class="th-ante">ANTECIPAÇÃO CPT</th>
+  <th class="th-med">MED HIST. VOL</th>
+  <th class="th-stg">POSIÇÕES STAGE OUT</th>
+  <th class="th-vant">VOLUME ANTECIPADO</th>
+  <th class="th-pant">POSIÇÕES STAGE OUT ✓</th>
+  <th class="th-est">ESTRATÉGIA DO DIA</th>
+</tr></thead><tbody><tr><td class="td-day" style="background:#0A1628!important;color:#FFE600!important;border-right:3px solid #FFE600!important" rowspan="25">D-0</td>
+  <td class="td-h">00h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">01h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">7.370</td><td class="td-n">32</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">02h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">03h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">17.319</td><td class="td-n">74</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">04h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">05h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">06h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">5.728</td><td class="td-n">25</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">07h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">08h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">09h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">6.971</td><td class="td-n">30</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">10h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">4.235</td><td class="td-n">18</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">11h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">12h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">13h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">8.824</td><td class="td-n">38</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">14h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">3.459</td><td class="td-n">15</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">15h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"><span class="badge-cpt-ante">⬆ CPT 19h</span></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n antecipado">16.846</td><td class="td-n antecipado">72</td>
+  <td class="td-est"><span class="etag e-ante">Antecipa CPT 19h p/ 15</span></td>
+</tr>
+<tr>
+  <td class="td-h">16h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"><span class="badge-cpt-ante">⬆ CPT 20h</span></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n antecipado">5.361</td><td class="td-n antecipado">23</td>
+  <td class="td-est"><span class="etag e-ante">Antecipa CPT 20h p/ 16</span></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">16:30h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">0</td><td class="td-n">0</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-risk">
+  <td class="td-h has-risk has-cpt">17h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">5.752</td><td class="td-n">25</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-risk">
+  <td class="td-h has-risk has-cpt">18h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">3.788</td><td class="td-n">16</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-jogo">
+  <td class="td-h jogo-interval">19h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n bold">16.846</td><td class="td-n bold">72</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
+</tr>
+<tr class="tr-jogo">
+  <td class="td-h jogo-interval">20h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n bold">5.361</td><td class="td-n bold">23</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
+</tr>
+<tr class="tr-jogo">
+  <td class="td-h jogo-interval">21h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"><span class="etag e-game">Jogo até 21:30</span></td>
+</tr>
+<tr>
+  <td class="td-h">22h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">23h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="sep"><td colspan="9"></td></tr>
+<tr><td class="td-day" style="background:#0A1628!important;color:#FFE600!important;border-right:3px solid #FFE600!important" rowspan="4">D+1</td>
+  <td class="td-h">00h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">01h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">0</td><td class="td-n">0</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">02h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">03h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">20.820</td><td class="td-n">89</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-total">
+  <td colspan="2" style="text-align:right;font-size:10px">TOTAL D-0</td>
+  <td style="text-align:center;font-size:10px">12 CPTs</td>
+  <td style="text-align:center;font-size:10px;color:#00695C;font-weight:700">2 antecipados</td>
+  <td style="text-align:right">85.653</td>
+  <td style="text-align:right">368</td>
+  <td style="text-align:right;color:#2E7D32">22.207</td>
+  <td style="text-align:right;color:#2E7D32">95</td>
+  <td></td>
+</tr></tbody></table></div>
+  </div>
+  <div class="section-h">🎯 Estratégia do Dia — J1 — Sáb 13/06</div>
+  <div class="cards-grid"><div class="card" style="border-left-color:#1A6B2B">
+  <div class="card-title">🕐 T2 — Hora Extra Antecipada (Entrada 13h)</div>
+  <div class="card-body">Antecipar entrada do Turno 2 em HE às <b>13h</b>. Saída no horário normal às 23:47. Garante capacidade plena das 13h às 18:30 para processar os CPTs antecipados antes da janela.</div>
+  <span class="card-pill" style="background:#E8F5E9;color:#1B5E20">✅ HE entrada 13h · saída 23:47</span>
+</div>
+<div class="card" style="border-left-color:#1A2E6B">
+  <div class="card-title">🌙 T3 — Sem Alteração</div>
+  <div class="card-body">Entrada no horário normal. <b>Nenhuma mudança necessária.</b> T3 atuará no pós-jogo como reserva estratégica para absorver o backlog gerado pela parada.</div>
+  <span class="card-pill" style="background:#EEF1FB;color:#162347">✅ Manter horário normal</span>
+</div>
+<div class="card" style="border-left-color:#546E7A">
+  <div class="card-title">📋 T4 — Folga (Sábado)</div>
+  <div class="card-body">Sábado é dia de folga para o T4 (escala 4x3). <b>Sem impacto e sem necessidade de ação.</b> Não há recurso T4 disponível neste dia.</div>
+  <span class="card-pill" style="background:#ECEFF1;color:#546E7A">📋 Folga — sem ação</span>
+</div>
+<div class="card" style="border-left-color:#BF8000">
+  <div class="card-title">🍽️ Refeição T2 — Em Análise</div>
+  <div class="card-body">Proposta: <b>50% às 17h e 50% às 18h</b>. Alternativa: todos às 18h, porém pode gerar restrições no refeitório devido à demanda simultânea. <b>Em análise junto à gestão do CAD.</b></div>
+  <span class="card-pill" style="background:#FFF8DC;color:#BF8000">⚠ Em análise — 17h ou 18h</span>
+</div>
+<div class="card" style="border-left-color:#00695C">
+  <div class="card-title">⬆ Antecipação CPT 19h → 15h e CPT 20h → 16h</div>
+  <div class="card-body">CPT 19h (16.846 vol · 72 pos) antecipado para 15h. CPT 20h (5.361 vol · 23 pos) antecipado para 16h. Stage Out deve absorver antes das 18:30.</div>
+  <span class="card-pill" style="background:#E0F2F1;color:#00695C">↑ CPT 19h → 15h  |  CPT 20h → 16h</span>
+</div>
+<div class="card" style="border-left-color:#162347">
+  <div class="card-title">📥 Flow — Inbound e Janela do Jogo</div>
+  <div class="card-body">Acompanhar a janta do Outbound. <b>Na janela de 18h até 22h não teremos recebimento.</b> Alinhar com a equipe de Flow para garantir que nenhum ETA seja programado neste intervalo.</div>
+  <span class="card-pill" style="background:#EEF1FB;color:#162347">⛔ Sem recebimento — 18h às 22h</span>
+</div>
+</div>
+  <div class="atencao-box">
+  <div class="atencao-title">📌 Pontos de Atenção</div>
+  <div class="atencao-grid">
+    <div class="atencao-item">
+      <span class="atencao-icon">⚙️</span>
+      <div><b>Ajuste de CAPs por turno</b><br>Ajustar as capacidades de acordo com o que teremos baseado no definido ops a ops em relação à entrada e saída de turnos.</div>
+    </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">🔄</span>
+      <div><b>CPTs pós-janela — CAP first, CT last resort</b><br>Para CPTs posteriores à janela dos jogos, iremos com ajuste de CAP somente e em último caso ajuste de cycle time via CT para garantir processamento antecipado.</div>
+    </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">📦</span>
+      <div><b>On Hold — antecipação estratégica</b><br>Podemos fazer a antecipação do volume de On Hold de acordo com a estratégia local definida junto com Ops.</div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div id="tab-j2" class="tab-content j2-tab" style="display:none">
+<div class="page">
+  <div class="jbanner" style="background:linear-gradient(135deg,#E6B800 0%,#FFE600 60%,#FFD000 100%)">
+  <div class="jb-l">
+    <div class="jb-ball">⚽</div>
+    <div>
+      <div class="jb-label">Jogo 2 · W25 · Kickoff 21:00</div>
+      <div class="jb-date">Sexta-feira, 19 de Junho de 2026</div>
+      <div class="jb-info">Janela de parada: <b>20:30 → 23:15</b>
+        <span class="jb-jtag">🕐 Jogo: 21:30 → 00:00</span>
+      </div>
+    </div>
+  </div>
+  <div class="jb-kpis">
+    <div class="kpill"><div class="kpv">12</div><div class="kpl">CPTs no dia</div></div>
+    <div class="kpill"><div class="kpv">1</div><div class="kpl">antecipado</div></div>
+    <div class="kpill"><div class="kpv">2.75h</div><div class="kpl">impacto</div></div>
+  </div>
+</div>
+  <div class="tpanel">
+    <div class="tpanel-hdr" style="background:#0A1628;border-bottom:3px solid #FFE600">
+      BRPE01 — Simulação Horária
+      <span class="tref">Ref.: dados históricos últimas 4 semanas</span>
+    </div>
+    <div class="tscroll"><table>
+<thead><tr>
+  <th class="th-day"></th>
+  <th class="th-hora">HORA</th>
+  <th class="th-cpt">CPT?</th>
+  <th class="th-ante">ANTECIPAÇÃO CPT</th>
+  <th class="th-med">MED HIST. VOL</th>
+  <th class="th-stg">POSIÇÕES STAGE OUT</th>
+  <th class="th-vant">VOLUME ANTECIPADO</th>
+  <th class="th-pant">POSIÇÕES STAGE OUT ✓</th>
+  <th class="th-est">ESTRATÉGIA DO DIA</th>
+</tr></thead><tbody><tr><td class="td-day" style="background:#0A1628!important;color:#FFE600!important;border-right:3px solid #FFE600!important" rowspan="25">D-0</td>
+  <td class="td-h">00h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">01h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">8.747</td><td class="td-n">37</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">02h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">03h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">20.110</td><td class="td-n">86</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">04h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">05h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">06h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">6.136</td><td class="td-n">26</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">07h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">08h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">09h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">4.979</td><td class="td-n">21</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">10h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">4.380</td><td class="td-n">19</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">11h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">12h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">13h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">3.160</td><td class="td-n">14</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">14h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">3.777</td><td class="td-n">16</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">15h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">16h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">16:30h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">198</td><td class="td-n">1</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">17h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">3.099</td>
+  <td class="td-n">13</td>
+  <td class="td-n dim">—</td>
+  <td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">18h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">4.863</td>
+  <td class="td-n">21</td>
+  <td class="td-n dim">—</td>
+  <td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-risk">
+  <td class="td-h has-risk has-cpt">19h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">25.227</td><td class="td-n">108</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-risk">
+  <td class="td-h has-risk has-cpt">20h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">5.505</td><td class="td-n">24</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">21h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"><span class="badge-cpt-ante">⬆ CPT 01h D+1</span></td>
+  <td class="td-n dim">—</td>
+  <td class="td-n dim">—</td>
+  <td class="td-n antecipado">7.370</td>
+  <td class="td-n antecipado">32</td>
+  <td class="td-est"><span class="etag e-ante">Antecipa CPT 01h D+1 p/ 21h</span></td>
+</tr>
+<tr class="tr-jogo">
+  <td class="td-h jogo-interval">22h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
+</tr>
+<tr class="tr-jogo">
+  <td class="td-h jogo-interval">23h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
+</tr>
+<tr class="sep"><td colspan="9"></td></tr>
+<tr class="tr-jogo"><td class="td-day" style="background:#0A1628!important;color:#FFE600!important;border-right:3px solid #FFE600!important" rowspan="4">D+1</td>
+  <td class="td-h jogo-interval">00h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"><span class="etag e-game">Jogo até 00:00</span></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">01h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">7.370</td><td class="td-n">32</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">02h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">03h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">17.319</td><td class="td-n">74</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-total">
+  <td colspan="2" style="text-align:right;font-size:10px">TOTAL D-0</td>
+  <td style="text-align:center;font-size:10px">12 CPTs</td>
+  <td style="text-align:center;font-size:10px;color:#00695C;font-weight:700">1 antecipado</td>
+  <td style="text-align:right">90.181</td>
+  <td style="text-align:right">386</td>
+  <td style="text-align:right;color:#2E7D32">7.370</td>
+  <td style="text-align:right;color:#2E7D32">32</td>
+  <td></td>
+</tr></tbody></table></div>
+  </div>
+  <div class="section-h">🎯 Estratégia do Dia — J2 — Sex 19/06</div>
+  <div class="cards-grid"><div class="card" style="border-left-color:#1A2E6B">
+  <div class="card-title">⏰ T2 — HE de Extensão</div>
+  <div class="card-body">Turno 2 fará <b>Hora Extra de extensão</b>, permanecendo além do horário normal para cobrir a janela do jogo e garantir processamento dos CPTs pós-jogo até às 23:15.</div>
+  <span class="card-pill" style="background:#EEF1FB;color:#162347">✅ HE extensão T2</span>
+</div>
+<div class="card" style="border-left-color:#00695C">
+  <div class="card-title">🏟️ T3 — Entrada Antecipada em HE</div>
+  <div class="card-body">Turno 3 terá <b>entrada antecipada em HE</b> para que os colaboradores possam assistir ao jogo no CAD. Alinhamento com ops necessário para definição do horário exato de entrada.</div>
+  <span class="card-pill" style="background:#E0F2F1;color:#00695C">✅ HE entrada antecipada — jogo no CAD</span>
+</div>
+<div class="card" style="border-left-color:#546E7A">
+  <div class="card-title">✅ Demais Turnos — Sem Impacto</div>
+  <div class="card-body">T1 e T4 (encerra sexta às 18h) seguem normalmente <b>sem qualquer alteração</b> de escala ou horário. T4 já encerra às 18h, antes da janela de 20:30.</div>
+  <span class="card-pill" style="background:#ECEFF1;color:#546E7A">✅ Sem ação necessária</span>
+</div>
+<div class="card" style="border-left-color:#00695C">
+  <div class="card-title">⬆ Antecipação CPT 01h D+1 → 21h</div>
+  <div class="card-body">CPT 19h (25.227 vol · 108 pos) antecipado para 17h. CPT 20h (5.505 vol · 24 pos) antecipado para 18h. Maior volume de antecipação nos 3 jogos.</div>
+  <span class="card-pill" style="background:#E0F2F1;color:#00695C">↑ CPT 01h D+1 → 21h D-0</span>
+</div>
+<div class="card" style="border-left-color:#162347">
+  <div class="card-title">📥 Flow — Janta Normal e HE de Extensão</div>
+  <div class="card-body">Janta no horário normal: <b>18:00 às 19:00</b>. Recebimento segue até as <b>21:00</b>. Após este horário, seguir com HE de extensão conforme Outbound para cobrir a janela do jogo.</div>
+  <span class="card-pill" style="background:#EEF1FB;color:#162347">🕐 Janta 18h–19h · Recebimento até 21h · HE extensão</span>
+</div>
+</div>
+  <div class="atencao-box">
+  <div class="atencao-title">📌 Pontos de Atenção</div>
+  <div class="atencao-grid">
+    <div class="atencao-item">
+      <span class="atencao-icon">⚙️</span>
+      <div><b>Ajuste de CAPs por turno</b><br>Ajustar as capacidades de acordo com o que teremos baseado no definido ops a ops em relação à entrada e saída de turnos.</div>
+    </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">🔄</span>
+      <div><b>CPTs pós-janela — CAP first, CT last resort</b><br>Para CPTs posteriores à janela dos jogos, iremos com ajuste de CAP somente e em último caso ajuste de cycle time via CT para garantir processamento antecipado.</div>
+    </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">📦</span>
+      <div><b>On Hold — antecipação estratégica</b><br>Podemos fazer a antecipação do volume de On Hold de acordo com a estratégia local definida junto com Ops.</div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div id="tab-j3" class="tab-content" style="display:none">
+<div class="page">
+  <div class="jbanner" style="background:linear-gradient(135deg,#003300 0%,#1B5E20 100%)">
+  <div class="jb-l">
+    <div class="jb-ball">⚽</div>
+    <div>
+      <div class="jb-label">Jogo 3 · W26 · Kickoff 19:00</div>
+      <div class="jb-date">Quarta-feira, 24 de Junho de 2026</div>
+      <div class="jb-info">Janela de parada: <b>17:30 → 20:15</b>
+        <span class="jb-jtag">🕐 Jogo: 19:00 → 21:30</span>
+      </div>
+    </div>
+  </div>
+  <div class="jb-kpis">
+    <div class="kpill"><div class="kpv">12</div><div class="kpl">CPTs no dia</div></div>
+    <div class="kpill"><div class="kpv">2</div><div class="kpl">antecipados</div></div>
+    <div class="kpill"><div class="kpv">2.75h</div><div class="kpl">impacto</div></div>
+  </div>
+</div>
+  <div class="tpanel">
+    <div class="tpanel-hdr" style="background:#1B5E20">
+      BRPE01 — Simulação Horária
+      <span class="tref">Ref.: dados históricos últimas 4 semanas</span>
+    </div>
+    <div class="tscroll"><table>
+<thead><tr>
+  <th class="th-day"></th>
+  <th class="th-hora">HORA</th>
+  <th class="th-cpt">CPT?</th>
+  <th class="th-ante">ANTECIPAÇÃO CPT</th>
+  <th class="th-med">MED HIST. VOL</th>
+  <th class="th-stg">POSIÇÕES STAGE OUT</th>
+  <th class="th-vant">VOLUME ANTECIPADO</th>
+  <th class="th-pant">POSIÇÕES STAGE OUT ✓</th>
+  <th class="th-est">ESTRATÉGIA DO DIA</th>
+</tr></thead><tbody><tr><td class="td-day" style="background:#0A1628!important;color:#FFE600!important;border-right:3px solid #FFE600!important" rowspan="25">D-0</td>
+  <td class="td-h">00h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">01h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">8.042</td><td class="td-n">34</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">02h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">03h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">23.183</td><td class="td-n">99</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">04h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">05h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">06h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">6.977</td><td class="td-n">30</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">07h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">08h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">09h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">7.880</td><td class="td-n">34</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">10h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">4.943</td><td class="td-n">21</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">11h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">12h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">13h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">9.357</td><td class="td-n">40</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">14h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">4.269</td><td class="td-n">18</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">15h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"><span class="badge-cpt-ante">⬆ CPT 19h</span></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n antecipado">13.811</td><td class="td-n antecipado">59</td>
+  <td class="td-est"><span class="etag e-ante">Antecipa CPT 19h p/ 15</span></td>
+</tr>
+<tr>
+  <td class="td-h">16h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"><span class="badge-cpt-ante">⬆ CPT 20h</span></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n antecipado">6.600</td><td class="td-n antecipado">28</td>
+  <td class="td-est"><span class="etag e-ante">Antecipa CPT 20h p/ 16</span></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">16:30h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">393</td><td class="td-n">2</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-risk">
+  <td class="td-h has-risk has-cpt">17h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">3.705</td><td class="td-n">16</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-risk">
+  <td class="td-h has-risk has-cpt">18h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">3.348</td><td class="td-n">14</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-jogo">
+  <td class="td-h jogo-interval">19h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n bold">13.811</td><td class="td-n bold">59</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
+</tr>
+<tr class="tr-jogo">
+  <td class="td-h jogo-interval">20h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n bold">6.600</td><td class="td-n bold">28</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
+</tr>
+<tr class="tr-jogo">
+  <td class="td-h jogo-interval">21h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"><span class="etag e-game">Jogo até 21:30</span></td>
+</tr>
+<tr>
+  <td class="td-h">22h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">23h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="sep"><td colspan="9"></td></tr>
+<tr><td class="td-day" style="background:#0A1628!important;color:#FFE600!important;border-right:3px solid #FFE600!important" rowspan="4">D+1</td>
+  <td class="td-h">00h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">01h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">10.824</td><td class="td-n">46</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h">02h</td>
+  <td class="td-cpt"></td>
+  <td class="td-ante"></td>
+  <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr>
+  <td class="td-h has-cpt">03h</td>
+  <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
+  <td class="td-ante"></td>
+  <td class="td-n">20.042</td><td class="td-n">86</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
+  <td class="td-est"></td>
+</tr>
+<tr class="tr-total">
+  <td colspan="2" style="text-align:right;font-size:10px">TOTAL D-0</td>
+  <td style="text-align:center;font-size:10px">12 CPTs</td>
+  <td style="text-align:center;font-size:10px;color:#00695C;font-weight:700">2 antecipados</td>
+  <td style="text-align:right">92.508</td>
+  <td style="text-align:right">395</td>
+  <td style="text-align:right;color:#2E7D32">20.411</td>
+  <td style="text-align:right;color:#2E7D32">87</td>
+  <td></td>
+</tr></tbody></table></div>
+  </div>
+  <div class="section-h">🎯 Estratégia do Dia — J3 — Qua 24/06</div>
+  <div class="cards-grid"><div class="card" style="border-left-color:#1A6B2B">
+  <div class="card-title">🕐 T2 — Hora Extra Antecipada (Entrada 13h)</div>
+  <div class="card-body">Antecipar entrada do Turno 2 em HE às <b>13h</b>. Saída no horário normal às 23:47. Garante capacidade das 13h às 17:30 para processar os CPTs antecipados antes da janela.</div>
+  <span class="card-pill" style="background:#E8F5E9;color:#1B5E20">✅ HE entrada 13h · saída 23:47</span>
+</div>
+<div class="card" style="border-left-color:#1A2E6B">
+  <div class="card-title">🌙 T3 — Sem Alteração</div>
+  <div class="card-body">Entrada no horário normal. <b>Nenhuma mudança necessária.</b> T3 entra às 23h para absorver o backlog gerado pela parada do jogo.</div>
+  <span class="card-pill" style="background:#EEF1FB;color:#162347">✅ Manter horário normal</span>
+</div>
+<div class="card" style="border-left-color:#E65100">
+  <div class="card-title">🏠 T4 — Saída Antecipada às 18h</div>
+  <div class="card-body">Turno 4 precisa sair às <b>18h</b> para que os colaboradores possam assistir ao jogo em casa. Janela do jogo inicia às 17:30 — T4 opera até 18h (dentro da janela). Fechar T4 às 17h nos ciclos de separação.</div>
+  <span class="card-pill" style="background:#FFF3E0;color:#E65100">⚠ T4 saída 18h — fechar ciclos às 17h</span>
+</div>
+<div class="card" style="border-left-color:#BF8000">
+  <div class="card-title">🍽️ Refeição T2 — Em Análise</div>
+  <div class="card-body">Proposta: <b>50% às 17h e 50% às 18h</b>. Alternativa: todos às 18h, porém pode gerar restrições no refeitório. <b>Em análise junto à gestão do CAD.</b></div>
+  <span class="card-pill" style="background:#FFF8DC;color:#BF8000">⚠ Em análise — 17h ou 18h</span>
+</div>
+<div class="card" style="border-left-color:#00695C">
+  <div class="card-title">⬆ Antecipação CPT 19h → 15h e CPT 20h → 16h</div>
+  <div class="card-body">CPT 19h (13.811 vol · 59 pos) antecipado para 15h. CPT 20h (6.600 vol · 28 pos) antecipado para 16h. J3 tem o maior volume de SLAs cancelados (5 no total).</div>
+  <span class="card-pill" style="background:#E0F2F1;color:#00695C">↑ CPT 19h → 15h  |  CPT 20h → 16h</span>
+</div>
+<div class="card" style="border-left-color:#162347">
+  <div class="card-title">📥 Flow — Inbound e Janela do Jogo</div>
+  <div class="card-body">Acompanhar a janta do Outbound. <b>Na janela de 18h até 22h não teremos recebimento.</b> Alinhar com a equipe de Flow para garantir que nenhum ETA seja programado neste intervalo.</div>
+  <span class="card-pill" style="background:#EEF1FB;color:#162347">⛔ Sem recebimento — 18h às 22h</span>
+</div>
+</div>
+  <div class="atencao-box">
+  <div class="atencao-title">📌 Pontos de Atenção</div>
+  <div class="atencao-grid">
+    <div class="atencao-item">
+      <span class="atencao-icon">⚙️</span>
+      <div><b>Ajuste de CAPs por turno</b><br>Ajustar as capacidades de acordo com o que teremos baseado no definido ops a ops em relação à entrada e saída de turnos.</div>
+    </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">🔄</span>
+      <div><b>CPTs pós-janela — CAP first, CT last resort</b><br>Para CPTs posteriores à janela dos jogos, iremos com ajuste de CAP somente e em último caso ajuste de cycle time via CT para garantir processamento antecipado.</div>
+    </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">📦</span>
+      <div><b>On Hold — antecipação estratégica</b><br>Podemos fazer a antecipação do volume de On Hold de acordo com a estratégia local definida junto com Ops.</div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<script>
+function showTab(t, btn) {
+  // Hide all via inline style
+  ['j1','j2','j3','guia'].forEach(function(id) {
+    var el = document.getElementById('tab-' + id);
+    if (el) el.style.display = 'none';
+  });
+  // Remove active class from all buttons
+  document.querySelectorAll('.tab-btn').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  // Show selected tab via inline style
+  var target = document.getElementById('tab-' + t);
+  if (target) target.style.display = 'block';
+  if (btn) btn.classList.add('active');
+}
+</script>
+
+<div id="tab-guia" class="tab-content" style="display:none">
+<div class="page">
+
+<div style="background:#fff;border-radius:14px;overflow:hidden;
+  box-shadow:0 3px 18px rgba(0,0,0,.1);margin-bottom:16px">
+  <div style="background:linear-gradient(135deg,#0A1628,#162347);
+    padding:20px 24px;border-bottom:3px solid #FFE600">
+    <div style="font-size:10px;color:rgba(255,255,255,.6);text-transform:uppercase;
+      letter-spacing:1px;margin-bottom:6px">📖 Guia de Replicação</div>
+    <div style="font-size:20px;font-weight:800;color:#FFE600">Como Recriar Este Dashboard</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.7);margin-top:4px">
+      Prompt completo + passo a passo para replicar em qualquer CAD e qualquer jogo
+    </div>
+  </div>
+
+  <!-- PROMPT COMPLETO -->
+  <div style="padding:20px 24px">
+
+    <div style="font-size:13px;font-weight:700;color:#0A1628;margin-bottom:14px;
+      display:flex;align-items:center;gap:8px">
+      🤖 Prompt para IA (Cole diretamente no Claude / ChatGPT)
+      <div style="flex:1;height:1px;background:#E4E8F0"></div>
+    </div>
+
+    <div style="background:#F2F4F8;border-radius:10px;border:1px solid #E4E8F0;
+      border-left:4px solid #FFE600;padding:18px 20px;font-family:'Courier New',monospace;
+      font-size:11px;line-height:1.8;color:#1C2333;white-space:pre-wrap">
+Crie um dashboard HTML completo de simulação THP para Copa do Mundo 2026.
+
+CONTEXTO:
+- CAD: [NOME DO CAD] — ex: BRPE01
+- Time: Flow FBM Executions
+- Objetivo: Simular impacto dos jogos da Copa no THP por hora do dia
+
+ESTRUTURA GERAL:
+- Topbar fixo: logo mercadolibre + tag "Flow FBM Executions | [CAD]"
+- Título: "Estratégia Operacional"
+- Subtítulo: "[CAD] | Jogos da Primeira Fase"
+- Topbar direito: lista dos 3 jogos com datas e janelas
+- 1 aba por jogo (J1, J2, J3) + 1 aba de Guia
+- Legenda de cores abaixo das abas
+
+CORES E IDENTIDADE VISUAL:
+- Fundo geral: #F2F4F8
+- Topbar: gradiente #0A1628 → #162347, borda inferior #FFE600
+- Logo mercadolibre: fundo #FFE600, texto #0A1628
+- CPT badge: fundo #162347, texto #FFE600
+- Antecipação badge: fundo #00695C, texto branco
+- Volume/Posições antecipados: fundo #E8F5E9, texto #2E7D32
+- Risco (1h antes da janela): fundo linha #FDFAF0, hora #FFF8DC
+- Intervalo do jogo: fundo #ECEFF1, texto #8A96A8 (cinza claro)
+- J1: gradiente azul #1A237E → #283593
+- J2: gradiente AMARELO #E6B800 → #FFE600, textos #0A1628
+- J3: gradiente verde #003300 → #1B5E20
+- Pontos de Atenção: borda esquerda #FFE600
+
+COLUNAS DA TABELA (em ordem):
+1. [coluna lateral D-0 / D+1] — label vertical navy #0A1628
+2. HORA — horas 00h a 23h + linha 16:30h
+3. CPT? — badge azul apenas nas horas com CPT
+4. ANTECIPAÇÃO CPT — badge teal quando CPT foi movido para esta hora
+5. MED HIST. VOL — volume histórico mediano do CPT neste dia da semana
+6. POSIÇÕES STAGE OUT — posições históricas do CPT
+7. VOLUME ANTECIPADO — volume do CPT movido PARA esta hora (verde)
+8. POSIÇÕES STAGE OUT ✓ — posições do CPT movido (verde)
+9. ESTRATÉGIA DO DIA — tags: "Antecipa CPT Xh p/ Yh" | "Jogo em Andamento" | "Jogo até HH:MM"
+
+HORAS COM CPT (linhas com badge azul):
+01h, 03h, 06h, 09h, 10h, 13h, 14h, 16:30h, 17h, 18h, 19h, 20h
+
+REGRAS DE DESTAQUE POR HORA:
+- Hora com CPT: fundo linha #EEF1FB, texto hora #162347 bold
+- Hora com antecipação (badge teal): apenas o badge é colorido, linha sem cor
+- 1h antes da janela: fundo #FFF8DC, texto #A07800
+- Dentro do intervalo do jogo: fundo linha #F5F7F8, célula hora #ECEFF1 itálico
+- Coluna ESTRATÉGIA DO DIA: somente estas tags:
+    • Badge teal "Antecipa CPT Xh p/ Yh" — somente nas horas de antecipação
+    • Badge cinza "Jogo em Andamento" — nas horas do intervalo (exceto última)
+    • Badge cinza "Jogo até HH:MM" — na última hora do intervalo
+    • Demais horas: em branco
+
+SEÇÃO D+1 (abaixo do separador amarelo):
+- Mostrar apenas 00h, 01h, 02h, 03h com dados do dia seguinte
+
+ANTECIPAÇÃO DE CPT (para cada jogo):
+- CPT 19h → antecipado para 2h antes da janela
+- CPT 20h → antecipado para 1h antes da janela
+- Preencher VOLUME ANTECIPADO e POSIÇÕES STAGE OUT ✓ com os dados históricos do CPT 19/20 do dia do jogo
+
+DADOS HISTÓRICOS (preencher por jogo/dia da semana):
+[INSERIR TABELA COM COLUNAS: CPT | dom | seg | ter | qua | qui | sex | sáb]
+[Duas tabelas: uma para VOLUME e uma para POSIÇÕES]
+Selecionar a coluna do dia correto para cada jogo:
+  - J1 → coluna do dia de semana do J1 (ex: sábado)
+  - J2 → coluna do dia de semana do J2 (ex: sexta)
+  - J3 → coluna do dia de semana do J3 (ex: quarta)
+
+CARDS DE ESTRATÉGIA (abaixo da tabela, grid 280px):
+Cada card tem: borda esquerda colorida | título | descrição | pill colorida
+Estrutura de cards por jogo:
+  - [DESCREVER OS CARDS DE TURNOS ESPECÍFICOS DO CAD]
+  - Card de antecipação de CPT (sempre incluir)
+  - Card de refeição T2 se aplicável
+
+PONTOS DE ATENÇÃO (aparecem em todas as abas, borda esquerda #FFE600):
+1. ⚙️ [TEXTO DO PONTO 1]
+2. 🔄 [TEXTO DO PONTO 2]
+3. 📦 [TEXTO DO PONTO 3]
+
+INFORMAÇÕES DOS 3 JOGOS:
+J1: Data [DD/MM/AAAA] | Kickoff [HH:MM] | Janela [HH:MM → HH:MM] | Intervalo jogo [HH:MM → HH:MM]
+J2: Data [DD/MM/AAAA] | Kickoff [HH:MM] | Janela [HH:MM → HH:MM] | Intervalo jogo [HH:MM → HH:MM]
+J3: Data [DD/MM/AAAA] | Kickoff [HH:MM] | Janela [HH:MM → HH:MM] | Intervalo jogo [HH:MM → HH:MM]
+    </div>
+
+    <!-- PASSO A PASSO -->
+    <div style="font-size:13px;font-weight:700;color:#0A1628;margin:20px 0 14px;
+      display:flex;align-items:center;gap:8px">
+      🪜 Passo a Passo para Replicar
+      <div style="flex:1;height:1px;background:#E4E8F0"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px">
+
+      <div style="background:#fff;border-radius:10px;border:1px solid #E4E8F0;
+        border-left:4px solid #FFE600;padding:14px 16px">
+        <div style="font-size:10px;font-weight:700;color:#90A4AE;margin-bottom:6px">PASSO 1</div>
+        <div style="font-size:12px;font-weight:700;color:#0A1628;margin-bottom:6px">📅 Defina os 3 jogos do CAD</div>
+        <div style="font-size:11px;color:#607080;line-height:1.6">
+          Confirme as datas, kickoffs e janelas de parada para os 3 jogos da fase. Identifique o dia da semana de cada jogo para mapear a coluna correta nos dados históricos.<br><br>
+          <b>Exemplo BRPE01:</b><br>
+          J1 = Sáb 13/06 → coluna "sáb"<br>
+          J2 = Sex 19/06 → coluna "sex"<br>
+          J3 = Qua 24/06 → coluna "qua"
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:10px;border:1px solid #E4E8F0;
+        border-left:4px solid #162347;padding:14px 16px">
+        <div style="font-size:10px;font-weight:700;color:#90A4AE;margin-bottom:6px">PASSO 2</div>
+        <div style="font-size:12px;font-weight:700;color:#0A1628;margin-bottom:6px">📊 Extraia os dados históricos</div>
+        <div style="font-size:11px;color:#607080;line-height:1.6">
+          No BigQuery, rode a query de THP histórico por CPT e dia da semana (últimas 4 semanas (média)). Exporte o resultado com as colunas:<br><br>
+          <b>CPT | dom | seg | ter | qua | qui | sex | sáb</b><br><br>
+          Uma tabela para VOLUME e uma para POSIÇÕES STAGE OUT.
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:10px;border:1px solid #E4E8F0;
+        border-left:4px solid #00695C;padding:14px 16px">
+        <div style="font-size:10px;font-weight:700;color:#90A4AE;margin-bottom:6px">PASSO 3</div>
+        <div style="font-size:12px;font-weight:700;color:#0A1628;margin-bottom:6px">⬆ Defina as antecipações de CPT</div>
+        <div style="font-size:11px;color:#607080;line-height:1.6">
+          Identifique quais CPTs serão antecipados e para qual hora. Padrão utilizado:<br><br>
+          • CPT 19h → antecipado 2h antes da janela<br>
+          • CPT 20h → antecipado 1h antes da janela<br><br>
+          Preencher VOLUME ANTECIPADO e POSIÇÕES ✓ com os dados do CPT 19/20 do dia do jogo.
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:10px;border:1px solid #E4E8F0;
+        border-left:4px solid #E65100;padding:14px 16px">
+        <div style="font-size:10px;font-weight:700;color:#90A4AE;margin-bottom:6px">PASSO 4</div>
+        <div style="font-size:12px;font-weight:700;color:#0A1628;margin-bottom:6px">🎯 Defina as estratégias de turno</div>
+        <div style="font-size:11px;color:#607080;line-height:1.6">
+          Para cada jogo, alinhe com Ops:<br><br>
+          • T2: HE entrada antecipada? HE extensão? Horário de refeição?<br>
+          • T3: entrada normal ou antecipada em HE?<br>
+          • T4: opera normalmente, folga, ou saída antecipada?<br><br>
+          Cada decisão vira um <b>card de estratégia</b> na aba do jogo.
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:10px;border:1px solid #E4E8F0;
+        border-left:4px solid #1A237E;padding:14px 16px">
+        <div style="font-size:10px;font-weight:700;color:#90A4AE;margin-bottom:6px">PASSO 5</div>
+        <div style="font-size:12px;font-weight:700;color:#0A1628;margin-bottom:6px">🤖 Cole o prompt na IA</div>
+        <div style="font-size:11px;color:#607080;line-height:1.6">
+          Abra o Claude (claude.ai) ou ChatGPT. Cole o prompt acima preenchendo os campos entre colchetes [ ] com as informações do seu CAD.<br><br>
+          Anexe também a tabela de dados históricos exportada do BigQuery.<br><br>
+          Solicite o arquivo como <b>HTML único</b> para upload no Grid Admin.
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:10px;border:1px solid #E4E8F0;
+        border-left:4px solid #2E7D32;padding:14px 16px">
+        <div style="font-size:10px;font-weight:700;color:#90A4AE;margin-bottom:6px">PASSO 6</div>
+        <div style="font-size:12px;font-weight:700;color:#0A1628;margin-bottom:6px">🌐 Publique no Grid Admin</div>
+        <div style="font-size:11px;color:#607080;line-height:1.6">
+          1. Acesse <b>grid.adminml.com</b> e faça login<br>
+          2. Clique em <b>+ New</b> → <b>Upload file</b><br>
+          3. Selecione o arquivo <b>.html</b> gerado<br>
+          4. Preencha título e tags (#copa #thp #[cad])<br>
+          5. Clique em <b>Upload</b><br>
+          6. No dashboard aberto, ative <b>Link sharing → Anyone</b><br>
+          7. Copie a URL e compartilhe
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+
+    <!-- REFERÊNCIA DE CORES -->
+    <div style="font-size:13px;font-weight:700;color:#0A1628;margin:20px 0 12px;
+      display:flex;align-items:center;gap:8px">
+      🎨 Referência de Cores e Badges
+      <div style="flex:1;height:1px;background:#E4E8F0"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:10px;margin-bottom:20px;font-size:11px">
+      <div style="background:#EEF1FB;border-radius:8px;padding:10px 12px;
+        display:flex;align-items:center;gap:10px">
+        <span style="background:#162347;color:#FFE600;font-size:10px;font-weight:700;
+          padding:3px 10px;border-radius:6px">CPT</span>
+        <span style="color:#546E7A">Hora com cut-off de postagem</span>
+      </div>
+      <div style="background:#E0F2F1;border-radius:8px;padding:10px 12px;
+        display:flex;align-items:center;gap:10px">
+        <span style="background:#00695C;color:#fff;font-size:10px;font-weight:700;
+          padding:3px 10px;border-radius:6px">⬆ CPT 19h</span>
+        <span style="color:#546E7A">CPT antecipado</span>
+      </div>
+      <div style="background:#E8F5E9;border-radius:8px;padding:10px 12px;
+        display:flex;align-items:center;gap:10px">
+        <span style="background:#E8F5E9;color:#2E7D32;font-size:11px;font-weight:700;
+          padding:3px 10px;border:1px solid #A5D6A7;border-radius:4px">16.846</span>
+        <span style="color:#546E7A">Volume/Posições antecipados</span>
+      </div>
+      <div style="background:#FFF8DC;border-radius:8px;padding:10px 12px;
+        display:flex;align-items:center;gap:10px">
+        <span style="background:#FFF8DC;color:#A07800;font-size:11px;font-weight:700;
+          padding:2px 8px;border-radius:4px">17h</span>
+        <span style="color:#546E7A">Risco — 1h antes da janela</span>
+      </div>
+      <div style="background:#ECEFF1;border-radius:8px;padding:10px 12px;
+        display:flex;align-items:center;gap:10px">
+        <span style="background:#ECEFF1;color:#8A96A8;font-size:11px;font-style:italic;
+          padding:2px 8px;border-radius:4px">19h</span>
+        <span style="color:#546E7A">Intervalo do jogo</span>
+      </div>
+      <div style="background:#EDE7F6;border-radius:8px;padding:10px 12px;
+        display:flex;align-items:center;gap:10px">
+        <span style="background:#EDE7F6;color:#4527A0;font-size:10px;font-weight:700;
+          padding:2px 8px;border-radius:6px">🚫 Cancelar SLA</span>
+        <span style="color:#546E7A">SLA cancelado neste dia</span>
+      </div>
+    </div>
+
+    <!-- ESTRUTURA DOS DADOS -->
+    <div style="font-size:13px;font-weight:700;color:#0A1628;margin:20px 0 12px;
+      display:flex;align-items:center;gap:8px">
+      📋 Estrutura dos Dados Históricos
+      <div style="flex:1;height:1px;background:#E4E8F0"></div>
+    </div>
+
+    <div style="background:#F7F9FF;border-radius:10px;border:1px solid #E4E8F0;
+      overflow:hidden;margin-bottom:20px">
+      <table style="width:100%;border-collapse:collapse;font-size:11px">
+        <thead>
+          <tr style="background:#162347;color:#fff">
+            <th style="padding:8px 12px;text-align:left;font-weight:700">CPT</th>
+            <th style="padding:8px 12px;text-align:center">dom</th>
+            <th style="padding:8px 12px;text-align:center">seg</th>
+            <th style="padding:8px 12px;text-align:center">ter</th>
+            <th style="padding:8px 12px;text-align:center;background:#1B5E20">qua ← J3</th>
+            <th style="padding:8px 12px;text-align:center">qui</th>
+            <th style="padding:8px 12px;text-align:center;background:#1A237E">sex ← J2</th>
+            <th style="padding:8px 12px;text-align:center;background:#7B1FA2">sáb ← J1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #E4E8F0">
+            <td style="padding:7px 12px;font-weight:700">1</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">0</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">13.882</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">9.536</td>
+            <td style="text-align:center;padding:7px 12px;background:#F1F8E9;font-weight:700;color:#1B5E20">8.042</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">10.824</td>
+            <td style="text-align:center;padding:7px 12px;background:#E8EDF8;font-weight:700;color:#162347">8.747</td>
+            <td style="text-align:center;padding:7px 12px;background:#EDE7F6;font-weight:700;color:#4527A0">7.370</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E4E8F0;background:#FAFBFF">
+            <td style="padding:7px 12px;font-weight:700">19</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">16.940</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">17.502</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">16.742</td>
+            <td style="text-align:center;padding:7px 12px;background:#F1F8E9;font-weight:700;color:#1B5E20">13.811</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">14.013</td>
+            <td style="text-align:center;padding:7px 12px;background:#E8EDF8;font-weight:700;color:#162347">25.227</td>
+            <td style="text-align:center;padding:7px 12px;background:#EDE7F6;font-weight:700;color:#4527A0">16.846</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E4E8F0">
+            <td style="padding:7px 12px;font-weight:700">20</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">5.314</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">5.686</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">6.150</td>
+            <td style="text-align:center;padding:7px 12px;background:#F1F8E9;font-weight:700;color:#1B5E20">6.600</td>
+            <td style="text-align:center;padding:7px 12px;color:#78909C">6.226</td>
+            <td style="text-align:center;padding:7px 12px;background:#E8EDF8;font-weight:700;color:#162347">5.505</td>
+            <td style="text-align:center;padding:7px 12px;background:#EDE7F6;font-weight:700;color:#4527A0">5.361</td>
+          </tr>
+          <tr>
+            <td colspan="8" style="padding:8px 12px;font-size:10px;color:#90A4AE;font-style:italic">
+              ↑ Leitura: para cada jogo, usar a coluna do dia da semana. CPT 19 e CPT 20 são os que serão antecipados.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CHECKLIST FINAL -->
+    <div style="font-size:13px;font-weight:700;color:#0A1628;margin:20px 0 12px;
+      display:flex;align-items:center;gap:8px">
+      ✅ Checklist de Validação
+      <div style="flex:1;height:1px;background:#E4E8F0"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:8px;margin-bottom:20px;font-size:11px;color:#607080">
+      <div style="background:#E8F5E9;border-radius:8px;padding:10px 12px">
+        ✅ 3 abas (uma por jogo) + 1 aba de Guia
+      </div>
+      <div style="background:#E8F5E9;border-radius:8px;padding:10px 12px">
+        ✅ MED HIST. VOL preenchido com dados do dia correto
+      </div>
+      <div style="background:#E8F5E9;border-radius:8px;padding:10px 12px">
+        ✅ Badge CPT apenas nos horários com CPT
+      </div>
+      <div style="background:#E8F5E9;border-radius:8px;padding:10px 12px">
+        ✅ Antecipação badge teal — coluna ESTRATÉGIA com tag
+      </div>
+      <div style="background:#E8F5E9;border-radius:8px;padding:10px 12px">
+        ✅ Volume antecipado em verde com border esquerda
+      </div>
+      <div style="background:#E8F5E9;border-radius:8px;padding:10px 12px">
+        ✅ Intervalo do jogo em cinza — correto por jogo
+      </div>
+      <div style="background:#E8F5E9;border-radius:8px;padding:10px 12px">
+        ✅ Cards de estratégia por jogo (turnos + refeição + CPT)
+      </div>
+      <div style="background:#E8F5E9;border-radius:8px;padding:10px 12px">
+        ✅ 3 Pontos de Atenção em todas as abas
+      </div>
+      <div style="background:#E8F5E9;border-radius:8px;padding:10px 12px">
+        ✅ J2 com tema amarelo predominante + letras azul navy
+      </div>
+      <div style="background:#FFF8DC;border-radius:8px;padding:10px 12px">
+        ⚠ D+1 mostrando CPTs 01h e 03h do dia seguinte
+      </div>
+      <div style="background:#FFF8DC;border-radius:8px;padding:10px 12px">
+        ⚠ Linha 16:30h entre 16h e 17h com dados corretos
+      </div>
+      <div style="background:#EEF1FB;border-radius:8px;padding:10px 12px">
+        📋 Publicado no Grid Admin com link público para o time
+      </div>
+    </div>
+
+  </div><!-- /padding -->
+</div><!-- /panel -->
+
+</div><!-- /page -->
+</div><!-- /tab-guia -->
+
+<script>
+/* Grid: only allow approved Grid domains to open unsandboxed tabs */
+(function(){
+  var allowedHosts = ["figma.com", "www.figma.com", "furydocs.io", "zeroheight.com", "google.com", "docs.google.com", "meet.google.com", "grid.adminml.com", "grid-artifacts.adminml.com", "mercadolibre.atlassian.net", "mercadolibre-opsgenie.atlassian.net", "app.datadoghq.com", "grafana-service.furycloud.io", "web.furycloud.io", "nasdaq-meli.app.opsgenie.com", "meli.enterprise.slack.com"];
+  var allowedSuffixes = [".adminml.com", ".atlassian.net", ".google.com", ".furycloud.io", ".melioffice.com", ".melisystems.com"];
+  var allowedPathPrefixes = {"github.com": ["/melisource/"], "www.github.com": ["/melisource/"]};
+  function normalizeUrl(rawUrl){
+    try {
+      return new URL(String(rawUrl || ""), window.location.href);
+    } catch (_err) {
+      return null;
+    }
+  }
+  function isAllowedUrl(rawUrl){
+    var parsed = normalizeUrl(rawUrl);
+    if(!parsed) return false;
+    if(parsed.protocol === "slack:") return true;
+    if(parsed.protocol !== "https:") return false;
+    var h = (parsed.hostname || "").toLowerCase();
+    if(!h) return false;
+    if(allowedHosts.indexOf(h) !== -1) return true;
+    for(var i = 0; i < allowedSuffixes.length; i++){
+      var s = allowedSuffixes[i];
+      if(h === s.slice(1) || (h.length > s.length && h.slice(-s.length) === s)) return true;
+    }
+    var pathPrefixes = allowedPathPrefixes[h];
+    if(pathPrefixes){
+      var p = parsed.pathname || "/";
+      for(var j = 0; j < pathPrefixes.length; j++){
+        if(p.slice(0, pathPrefixes[j].length) === pathPrefixes[j]) return true;
+      }
+    }
+    return false;
+  }
+  function requestParentPopup(rawUrl){
+    var parsed = normalizeUrl(rawUrl);
+    if(!parsed || !window.parent || window.parent === window) return false;
+    try {
+      window.parent.postMessage({type: "grid-open-safe-popup", url: parsed.href}, window.location.origin);
+      return true;
+    } catch (_err) {
+      return false;
+    }
+  }
+
+  document.addEventListener("click", function(event){
+    var target = event.target;
+    var anchor = target && target.closest ? target.closest("a[href]") : null;
+    if(!anchor) return;
+    var href = anchor.getAttribute("href") || "";
+    if(!href || href.charAt(0) === "#") return;
+    var opensNewTab = anchor.target === "_blank" || event.ctrlKey || event.metaKey || event.button === 1;
+    if(!opensNewTab) return;
+    if(!isAllowedUrl(href)) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+    if(requestParentPopup(href)) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, true);
+
+  var nativeOpen = window.open;
+  window.open = function(rawUrl, target, features){
+    if(!isAllowedUrl(rawUrl)) return null;
+    if(requestParentPopup(rawUrl)) return null;
+    return nativeOpen ? nativeOpen.call(window, normalizeUrl(rawUrl).href, target, features) : null;
+  };
+})();
+</script>
+<script>
+/* Grid: sync iframe URL mutations to parent address bar */
+(function(){
+  function notifyParent(search, hash){
+    if(!window.parent || window.parent === window) return;
+    try{
+      window.parent.postMessage(
+        {type:"grid-url-sync", search:search, hash:hash},
+        window.location.origin
+      );
+    }catch(_){}
+  }
+  function parseAndNotify(url){
+    try{
+      var p = new URL(String(url), window.location.href);
+      notifyParent(p.search, p.hash);
+    }catch(_){}
+  }
+  var _push = history.pushState.bind(history);
+  var _replace = history.replaceState.bind(history);
+  history.pushState = function(state, title, url){
+    _push(state, title, url);
+    if(url != null) parseAndNotify(url);
+  };
+  history.replaceState = function(state, title, url){
+    _replace(state, title, url);
+    if(url != null) parseAndNotify(url);
+  };
+  window.addEventListener("hashchange", function(){
+    notifyParent(window.location.search, window.location.hash);
+  });
+})();
+</script>
+</body>
+</html>
