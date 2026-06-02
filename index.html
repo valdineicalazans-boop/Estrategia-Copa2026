@@ -105,6 +105,11 @@ tr.tr-risk td{background:#FDFAF0}
   font-size:9px;font-weight:700;margin:1px 2px;white-space:nowrap}
 .e-ante{background:#E0F2F1;color:#00695C}
 .e-game{background:#ECEFF1;color:#546E7A}
+.e-libera{background:#FFE0B2;color:#E65100}
+.e-retorno{background:#FFF3E0;color:#BF360C;border:1px solid #FFCC80}
+/* Intervalo de proteção — liberação do time p/ o jogo */
+tr.tr-prot td{box-shadow:inset 0 0 0 9999px rgba(251,140,0,.05)}
+tr.tr-prot td.td-h{box-shadow:inset 5px 0 0 #FB8C00,inset 0 0 0 9999px rgba(251,140,0,.08)!important}
 tr td{border-bottom:1px solid #EFF1F7;vertical-align:middle}
 tr:hover td{filter:brightness(.975)}
 tr.sep td{background:linear-gradient(90deg,#FFE600,#FFD000);height:3px;padding:0}
@@ -175,6 +180,7 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
   <div class="leg" style="background:#E8F5E9"><div class="ld" style="background:#2E7D32"></div>Volume / Posições antecipados</div>
   <div class="leg" style="background:#FFF8DC"><div class="ld" style="background:#BF8000"></div>⚠ Risco — 1h antes da janela</div>
   <div class="leg" style="background:#ECEFF1"><div class="ld" style="background:#90A4AE"></div>⚽ Intervalo do jogo (cinza)</div>
+  <div class="leg" style="background:#FFF3E0"><div class="ld" style="background:#FB8C00"></div>🔓 Intervalo de proteção (time liberado)</div>
   <div style="margin-left:auto;font-size:10px;color:#90A4AE">Dados históricos: últimas 4 semanas</div>
 </div>
 <div id="tab-j1" class="tab-content active" style="display:block">
@@ -185,15 +191,15 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
     <div>
       <div class="jb-label">Jogo 1 · W24 · Kickoff 19:00</div>
       <div class="jb-date">Sábado, 13 de Junho de 2026</div>
-      <div class="jb-info">Janela de parada: <b>18:30 → 21:15</b>
-        <span class="jb-jtag">🕐 Jogo: 19:00 → 21:30</span>
+      <div class="jb-info">Intervalo de proteção: <b>18:30 → 21:15</b>
+        <span class="jb-jtag">🕐 Jogo: 19:00 → 20:55</span>
       </div>
     </div>
   </div>
   <div class="jb-kpis">
     <div class="kpill"><div class="kpv">12</div><div class="kpl">CPTs no dia</div></div>
     <div class="kpill"><div class="kpv">2</div><div class="kpl">antecipados</div></div>
-    <div class="kpill"><div class="kpv">2.5h</div><div class="kpl">impacto</div></div>
+    <div class="kpill"><div class="kpv">2.75h</div><div class="kpl">impacto</div></div>
   </div>
 </div>
   <div class="tpanel">
@@ -345,33 +351,33 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
   <td class="td-n">5.752</td><td class="td-n">25</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
   <td class="td-est"></td>
 </tr>
-<tr class="tr-risk">
+<tr class="tr-risk tr-prot">
   <td class="td-h has-risk has-cpt">18h</td>
   <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
   <td class="td-ante"></td>
   <td class="td-n">3.788</td><td class="td-n">16</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
-  <td class="td-est"></td>
+  <td class="td-est"><span class="etag e-libera">🔓 Liberação 18:30 · time no CAD</span></td>
 </tr>
-<tr class="tr-jogo">
+<tr class="tr-jogo tr-prot">
   <td class="td-h jogo-interval">19h</td>
   <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
   <td class="td-ante"></td>
   <td class="td-n bold">16.846</td><td class="td-n bold">72</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
   <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
 </tr>
-<tr class="tr-jogo">
+<tr class="tr-jogo tr-prot">
   <td class="td-h jogo-interval">20h</td>
   <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
   <td class="td-ante"></td>
   <td class="td-n bold">5.361</td><td class="td-n bold">23</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
-  <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
+  <td class="td-est"><span class="etag e-game">Jogo até 20:55</span></td>
 </tr>
-<tr class="tr-jogo">
+<tr class="tr-jogo tr-prot">
   <td class="td-h jogo-interval">21h</td>
   <td class="td-cpt"></td>
   <td class="td-ante"></td>
   <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
-  <td class="td-est"><span class="etag e-game">Jogo até 21:30</span></td>
+  <td class="td-est"><span class="etag e-retorno">🔔 Retorno 21:15 · 1º bip</span></td>
 </tr>
 <tr>
   <td class="td-h">22h</td>
@@ -428,7 +434,17 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
 </tr></tbody></table></div>
   </div>
   <div class="section-h">🎯 Estratégia do Dia — J1 — Sáb 13/06</div>
-  <div class="cards-grid"><div class="card" style="border-left-color:#1A6B2B">
+  <div class="cards-grid"><div class="card" style="border-left-color:#2E7D32">
+  <div class="card-title">🛡️ Diferimento &amp; SLA — Sem Risco</div>
+  <div class="card-body"><b>Sem risco de diferimento e SLA.</b> Estratégia: <b>proteção do FAST e diferir o SLOW</b> · CAP 5 conforme o dia. FCST 01/06/26 previsto: <b>90.515 unid.</b> · TPH Plan com as proteções: <b>99.020</b>.</div>
+  <span class="card-pill" style="background:#E8F5E9;color:#1B5E20">✅ Sem risco · TPH Plan 99.020</span>
+</div>
+<div class="card" style="border-left-color:#FB8C00">
+  <div class="card-title">🔓 Liberação do Time para o Jogo</div>
+  <div class="card-body">Liberar o time para assistir ao jogo às <b>18h30</b>. Retorno para a operação às <b>21h15</b> — <b>primeiro bip</b>. Intervalo de proteção: <b>18:30 → 21:15</b> (5 min de prorrogação em cada tempo já considerados).</div>
+  <span class="card-pill" style="background:#FFF3E0;color:#E65100">🔓 Liberação 18:30 · 🔔 Retorno 21:15 (1º bip)</span>
+</div>
+<div class="card" style="border-left-color:#1A6B2B">
   <div class="card-title">🕐 T2 — Hora Extra Antecipada (Entrada 13h)</div>
   <div class="card-body">Antecipar entrada do Turno 2 em HE às <b>13h</b>. Saída no horário normal às 23:47. Garante capacidade plena das 13h às 18:30 para processar os CPTs antecipados antes da janela.</div>
   <span class="card-pill" style="background:#E8F5E9;color:#1B5E20">✅ HE entrada 13h · saída 23:47</span>
@@ -474,6 +490,14 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
       <span class="atencao-icon">📦</span>
       <div><b>On Hold — antecipação estratégica</b><br>Podemos fazer a antecipação do volume de On Hold de acordo com a estratégia local definida junto com Ops.</div>
     </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">⏱️</span>
+      <div><b>Tempo total de parada: 02:45 (18h30 → 21h15)</b><br>Último bip <b>18:30</b> › deslocamento › <b>19h</b> › jogo (+acréscimo 10min) › <b>20:55</b> › deslocamento › <b>21:15</b> primeiro bip.</div>
+    </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">🚫</span>
+      <div><b>CAP5 zerada</b><br>CAP 5 zerada de <b>18:30h às 21:30h</b>.</div>
+    </div>
   </div>
 </div>
 </div>
@@ -486,14 +510,14 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
     <div>
       <div class="jb-label">Jogo 2 · W25 · Kickoff 21:00</div>
       <div class="jb-date">Sexta-feira, 19 de Junho de 2026</div>
-      <div class="jb-info">Janela de parada: <b>20:30 → 23:15</b>
-        <span class="jb-jtag">🕐 Jogo: 21:30 → 00:00</span>
+      <div class="jb-info">Intervalo de proteção: <b>21:00 → 23:40</b>
+        <span class="jb-jtag">🕐 Jogo: 21:30 → 23:25</span>
       </div>
     </div>
   </div>
   <div class="jb-kpis">
     <div class="kpill"><div class="kpv">12</div><div class="kpl">CPTs no dia</div></div>
-    <div class="kpill"><div class="kpv">1</div><div class="kpl">antecipado</div></div>
+    <div class="kpill"><div class="kpv">0</div><div class="kpl">antecipados</div></div>
     <div class="kpill"><div class="kpv">2.75h</div><div class="kpl">impacto</div></div>
   </div>
 </div>
@@ -673,37 +697,37 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
   <td class="td-n">5.505</td><td class="td-n">24</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
   <td class="td-est"></td>
 </tr>
-<tr>
+<tr class="tr-prot">
   <td class="td-h">21h</td>
   <td class="td-cpt"></td>
-  <td class="td-ante"><span class="badge-cpt-ante">⬆ CPT 01h D+1</span></td>
+  <td class="td-ante"></td>
   <td class="td-n dim">—</td>
   <td class="td-n dim">—</td>
-  <td class="td-n antecipado">7.370</td>
-  <td class="td-n antecipado">32</td>
-  <td class="td-est"><span class="etag e-ante">Antecipa CPT 01h D+1 p/ 21h</span></td>
+  <td class="td-n dim">—</td>
+  <td class="td-n dim">—</td>
+  <td class="td-est"><span class="etag e-libera">🔓 Liberação 21:00 · time no CAD</span></td>
 </tr>
-<tr class="tr-jogo">
+<tr class="tr-jogo tr-prot">
   <td class="td-h jogo-interval">22h</td>
   <td class="td-cpt"></td>
   <td class="td-ante"></td>
   <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
   <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
 </tr>
-<tr class="tr-jogo">
+<tr class="tr-jogo tr-prot">
   <td class="td-h jogo-interval">23h</td>
   <td class="td-cpt"></td>
   <td class="td-ante"></td>
   <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
-  <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
+  <td class="td-est"><span class="etag e-game">Jogo até 23:25</span> <span class="etag e-retorno">🔔 Retorno 23:40 · 1º bip</span></td>
 </tr>
 <tr class="sep"><td colspan="9"></td></tr>
-<tr class="tr-jogo"><td class="td-day" style="background:#0A1628!important;color:#FFE600!important;border-right:3px solid #FFE600!important" rowspan="4">D+1</td>
-  <td class="td-h jogo-interval">00h</td>
+<tr><td class="td-day" style="background:#0A1628!important;color:#FFE600!important;border-right:3px solid #FFE600!important" rowspan="4">D+1</td>
+  <td class="td-h">00h</td>
   <td class="td-cpt"></td>
   <td class="td-ante"></td>
   <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
-  <td class="td-est"><span class="etag e-game">Jogo até 00:00</span></td>
+  <td class="td-est"></td>
 </tr>
 <tr>
   <td class="td-h has-cpt">01h</td>
@@ -729,16 +753,26 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
 <tr class="tr-total">
   <td colspan="2" style="text-align:right;font-size:10px">TOTAL D-0</td>
   <td style="text-align:center;font-size:10px">12 CPTs</td>
-  <td style="text-align:center;font-size:10px;color:#00695C;font-weight:700">1 antecipado</td>
+  <td style="text-align:center;font-size:10px;color:#546E7A;font-weight:700">0 antecipados</td>
   <td style="text-align:right">90.181</td>
   <td style="text-align:right">386</td>
-  <td style="text-align:right;color:#2E7D32">7.370</td>
-  <td style="text-align:right;color:#2E7D32">32</td>
+  <td style="text-align:right;color:#546E7A">—</td>
+  <td style="text-align:right;color:#546E7A">—</td>
   <td></td>
 </tr></tbody></table></div>
   </div>
   <div class="section-h">🎯 Estratégia do Dia — J2 — Sex 19/06</div>
-  <div class="cards-grid"><div class="card" style="border-left-color:#1A2E6B">
+  <div class="cards-grid"><div class="card" style="border-left-color:#C62828">
+  <div class="card-title">⚠️ Risco de Diferimento — 10,6%</div>
+  <div class="card-body"><b>Risco de diferimento: 7.495 unid. (10,6%).</b> FCST 01/06 para o dia: <b>112.443</b> · Diferimento: <b>10,6% — 7,5k</b> · Perda de TPH: <b>-17,7k</b> será reduzido do SLOW para proteger o FAST.</div>
+  <span class="card-pill" style="background:#FFEBEE;color:#C62828">⚠ Diferimento 7,5k (10,6%) · TPH -17,7k</span>
+</div>
+<div class="card" style="border-left-color:#FB8C00">
+  <div class="card-title">🔓 Liberação do Time para o Jogo</div>
+  <div class="card-body">Liberar o time para assistir ao jogo às <b>21h</b>. Retorno para a operação às <b>23h40</b> — <b>primeiro bip</b>. Intervalo de proteção: <b>21:00 → 23:40</b> (5 min de prorrogação em cada tempo já considerados).</div>
+  <span class="card-pill" style="background:#FFF3E0;color:#E65100">🔓 Liberação 21:00 · 🔔 Retorno 23:40 (1º bip)</span>
+</div>
+<div class="card" style="border-left-color:#1A2E6B">
   <div class="card-title">⏰ T2 — HE de Extensão</div>
   <div class="card-body">Turno 2 fará <b>Hora Extra de extensão</b>, permanecendo além do horário normal para cobrir a janela do jogo e garantir processamento dos CPTs pós-jogo até às 23:15.</div>
   <span class="card-pill" style="background:#EEF1FB;color:#162347">✅ HE extensão T2</span>
@@ -752,11 +786,6 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
   <div class="card-title">✅ Demais Turnos — Sem Impacto</div>
   <div class="card-body">T1 e T4 (encerra sexta às 18h) seguem normalmente <b>sem qualquer alteração</b> de escala ou horário. T4 já encerra às 18h, antes da janela de 20:30.</div>
   <span class="card-pill" style="background:#ECEFF1;color:#546E7A">✅ Sem ação necessária</span>
-</div>
-<div class="card" style="border-left-color:#00695C">
-  <div class="card-title">⬆ Antecipação CPT 01h D+1 → 21h</div>
-  <div class="card-body">CPT 19h (25.227 vol · 108 pos) antecipado para 17h. CPT 20h (5.505 vol · 24 pos) antecipado para 18h. Maior volume de antecipação nos 3 jogos.</div>
-  <span class="card-pill" style="background:#E0F2F1;color:#00695C">↑ CPT 01h D+1 → 21h D-0</span>
 </div>
 <div class="card" style="border-left-color:#162347">
   <div class="card-title">📥 Flow — Janta Normal e HE de Extensão</div>
@@ -779,6 +808,14 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
       <span class="atencao-icon">📦</span>
       <div><b>On Hold — antecipação estratégica</b><br>Podemos fazer a antecipação do volume de On Hold de acordo com a estratégia local definida junto com Ops.</div>
     </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">⏱️</span>
+      <div><b>Tempo total de parada: 02:40 (21h00 → 23h40)</b><br>Último bip <b>21:00</b> › deslocamento › <b>21:30</b> › jogo (+acréscimo 10min) › <b>23:25</b> › deslocamento › <b>23:40</b> primeiro bip.</div>
+    </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">🚫</span>
+      <div><b>CAP5 zerada</b><br>CAP 5 zerada de <b>21:00h às 23:55h</b>.</div>
+    </div>
   </div>
 </div>
 </div>
@@ -791,8 +828,8 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
     <div>
       <div class="jb-label">Jogo 3 · W26 · Kickoff 19:00</div>
       <div class="jb-date">Quarta-feira, 24 de Junho de 2026</div>
-      <div class="jb-info">Janela de parada: <b>17:30 → 20:15</b>
-        <span class="jb-jtag">🕐 Jogo: 19:00 → 21:30</span>
+      <div class="jb-info">Intervalo de proteção: <b>18:30 → 21:15</b>
+        <span class="jb-jtag">🕐 Jogo: 19:00 → 20:55</span>
       </div>
     </div>
   </div>
@@ -951,33 +988,33 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
   <td class="td-n">3.705</td><td class="td-n">16</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
   <td class="td-est"></td>
 </tr>
-<tr class="tr-risk">
+<tr class="tr-risk tr-prot">
   <td class="td-h has-risk has-cpt">18h</td>
   <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
   <td class="td-ante"></td>
   <td class="td-n">3.348</td><td class="td-n">14</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
-  <td class="td-est"></td>
+  <td class="td-est"><span class="etag e-libera">🔓 Liberação 18:30 · time no CAD</span></td>
 </tr>
-<tr class="tr-jogo">
+<tr class="tr-jogo tr-prot">
   <td class="td-h jogo-interval">19h</td>
   <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
   <td class="td-ante"></td>
   <td class="td-n bold">13.811</td><td class="td-n bold">59</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
   <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
 </tr>
-<tr class="tr-jogo">
+<tr class="tr-jogo tr-prot">
   <td class="td-h jogo-interval">20h</td>
   <td class="td-cpt"><span class="badge-cpt">CPT</span></td>
   <td class="td-ante"></td>
   <td class="td-n bold">6.600</td><td class="td-n bold">28</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
-  <td class="td-est"><span class="etag e-game">Jogo em Andamento</span></td>
+  <td class="td-est"><span class="etag e-game">Jogo até 20:55</span></td>
 </tr>
-<tr class="tr-jogo">
+<tr class="tr-jogo tr-prot">
   <td class="td-h jogo-interval">21h</td>
   <td class="td-cpt"></td>
   <td class="td-ante"></td>
   <td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td><td class="td-n dim">—</td>
-  <td class="td-est"><span class="etag e-game">Jogo até 21:30</span></td>
+  <td class="td-est"><span class="etag e-retorno">🔔 Retorno 21:15 · 1º bip</span></td>
 </tr>
 <tr>
   <td class="td-h">22h</td>
@@ -1034,7 +1071,17 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
 </tr></tbody></table></div>
   </div>
   <div class="section-h">🎯 Estratégia do Dia — J3 — Qua 24/06</div>
-  <div class="cards-grid"><div class="card" style="border-left-color:#1A6B2B">
+  <div class="cards-grid"><div class="card" style="border-left-color:#C62828">
+  <div class="card-title">⚠️ Risco de Diferimento — 12,2%</div>
+  <div class="card-body">FCST 01/06 para o dia: <b>122.846</b> · Diferimento: <b>12,2% — 9,4k</b> · Perda de TPH: <b>-9,4k</b> será reduzido do SLOW para proteger o FAST.</div>
+  <span class="card-pill" style="background:#FFEBEE;color:#C62828">⚠ Diferimento 9,4k (12,2%) · TPH -9,4k</span>
+</div>
+<div class="card" style="border-left-color:#FB8C00">
+  <div class="card-title">🔓 Liberação do Time para o Jogo</div>
+  <div class="card-body">Liberar o time para assistir ao jogo às <b>18h30</b>. Retorno para a operação às <b>21h15</b> — <b>primeiro bip</b>. Intervalo de proteção: <b>18:30 → 21:15</b> (5 min de prorrogação em cada tempo já considerados).</div>
+  <span class="card-pill" style="background:#FFF3E0;color:#E65100">🔓 Liberação 18:30 · 🔔 Retorno 21:15 (1º bip)</span>
+</div>
+<div class="card" style="border-left-color:#1A6B2B">
   <div class="card-title">🕐 T2 — Hora Extra Antecipada (Entrada 13h)</div>
   <div class="card-body">Antecipar entrada do Turno 2 em HE às <b>13h</b>. Saída no horário normal às 23:47. Garante capacidade das 13h às 17:30 para processar os CPTs antecipados antes da janela.</div>
   <span class="card-pill" style="background:#E8F5E9;color:#1B5E20">✅ HE entrada 13h · saída 23:47</span>
@@ -1079,6 +1126,14 @@ tr.tr-total td{background:#EEF2FF!important;font-weight:700;color:#1A237E;
     <div class="atencao-item">
       <span class="atencao-icon">📦</span>
       <div><b>On Hold — antecipação estratégica</b><br>Podemos fazer a antecipação do volume de On Hold de acordo com a estratégia local definida junto com Ops.</div>
+    </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">⏱️</span>
+      <div><b>Tempo total de parada: 02:45 (18h30 → 21h15)</b><br>Último bip <b>18:30</b> › deslocamento › <b>19h</b> › jogo (+acréscimo 10min) › <b>20:55</b> › deslocamento › <b>21:15</b> primeiro bip.</div>
+    </div>
+    <div class="atencao-item">
+      <span class="atencao-icon">🚫</span>
+      <div><b>CAP5 zerada</b><br>CAP 5 zerada de <b>18:30h às 21:30h</b>.</div>
     </div>
   </div>
 </div>
@@ -1460,6 +1515,75 @@ J3: Data [DD/MM/AAAA] | Kickoff [HH:MM] | Janela [HH:MM → HH:MM] | Intervalo j
 
   </div><!-- /padding -->
 </div><!-- /panel -->
+
+<div style="background:#fff;border-radius:14px;overflow:hidden;
+  box-shadow:0 3px 18px rgba(0,0,0,.1);margin-bottom:16px">
+  <div style="background:linear-gradient(135deg,#E65100,#FB8C00);
+    padding:20px 24px;border-bottom:3px solid #0A1628">
+    <div style="font-size:10px;color:rgba(255,255,255,.85);text-transform:uppercase;
+      letter-spacing:1px;margin-bottom:6px">🔓 Atualização de Liberação / Intervalo de Proteção</div>
+    <div style="font-size:20px;font-weight:800;color:#fff">Prompt para Atualizar os Próximos Jogos</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.9);margin-top:4px">
+      Cole o texto abaixo no Claude junto com o arquivo HTML e preencha apenas os campos entre colchetes
+    </div>
+  </div>
+
+  <div style="padding:20px 24px">
+    <div style="font-size:13px;font-weight:700;color:#0A1628;margin-bottom:14px;
+      display:flex;align-items:center;gap:8px">
+      🤖 Prompt de Atualização (copiar e colar)
+      <div style="flex:1;height:1px;background:#E4E8F0"></div>
+    </div>
+
+    <div style="background:#F2F4F8;border-radius:10px;border:1px solid #E4E8F0;
+      border-left:4px solid #FB8C00;padding:18px 20px;font-family:'Courier New',monospace;
+      font-size:11px;line-height:1.8;color:#1C2333;white-space:pre-wrap">
+Atualize o arquivo HTML do dashboard da Copa 2026 com as novas informações de liberação do time e intervalo de proteção.
+
+PARA CADA JOGO QUE PRECISAR ALTERAR, informe:
+
+• Jogo: [J1 / J2 / J3]
+• Horário do jogo: [HH:MM] às [HH:MM]  (já considerando os minutos de prorrogação por tempo)
+• Liberar o time às: [HH:MM]
+• Retorno para a operação às: [HH:MM]  (primeiro bip)
+• Intervalo de proteção: [HH:MM] até [HH:MM]
+
+O QUE FAZER NO ARQUIVO:
+
+1. BANNER do jogo — atualizar:
+   - "Intervalo de proteção: [início] → [fim]"
+   - "🕐 Jogo: [início] → [fim]"
+
+2. TABELA HORÁRIA — destacar o intervalo de proteção:
+   - Adicionar a classe "tr-prot" em TODAS as linhas &lt;tr&gt; dentro do intervalo
+     (isto pinta a faixa laranja + barra lateral na coluna HORA).
+   - Na hora de início da liberação, na coluna ESTRATÉGIA DO DIA:
+       &lt;span class="etag e-libera"&gt;🔓 Liberação [HH:MM] · time no CAD&lt;/span&gt;
+   - Nas horas do jogo: manter &lt;span class="etag e-game"&gt;Jogo em Andamento&lt;/span&gt;
+   - Na hora em que o jogo termina: &lt;span class="etag e-game"&gt;Jogo até [HH:MM]&lt;/span&gt;
+   - Na hora do retorno: &lt;span class="etag e-retorno"&gt;🔔 Retorno [HH:MM] · 1º bip&lt;/span&gt;
+   - Remover qualquer tag de jogo de horas que ficarem FORA do novo intervalo.
+
+3. CARD na ESTRATÉGIA DO DIA — manter/atualizar o card "🔓 Liberação do Time para o Jogo"
+   (border-left-color:#FB8C00) com o texto:
+   "Liberar o time para assistir ao jogo às [HH:MM]. Retorno para a operação às [HH:MM] — primeiro bip.
+    Intervalo de proteção: [início] → [fim]."
+   Pill: 🔓 Liberação [HH:MM] · 🔔 Retorno [HH:MM] (1º bip)
+
+REGRAS:
+- NÃO alterar dados históricos de volume/posições nem os CPTs.
+- Manter o padrão visual existente (classes tr-prot, e-libera, e-retorno, e-game já estão no CSS).
+- Alterar somente o(s) jogo(s) indicado(s); não tocar nos demais.
+    </div>
+
+    <div style="margin-top:16px;background:#FFF3E0;border-radius:10px;
+      border-left:4px solid #FB8C00;padding:14px 18px;font-size:11px;color:#5A3A1A;line-height:1.7">
+      💡 <b>Dica:</b> os horários atuais são — <b>J1 e J3:</b> jogo 19:00→20:55, liberação 18:30, retorno 21:15 (proteção 18:30→21:15).
+      <b>J2:</b> jogo 21:30→23:25, liberação 21:00, retorno 23:40 (proteção 21:00→23:40).
+      Se um jogo mudar de horário, basta deslocar o intervalo e repetir os 3 passos acima.
+    </div>
+  </div>
+</div><!-- /panel atualização -->
 
 </div><!-- /page -->
 </div><!-- /tab-guia -->
